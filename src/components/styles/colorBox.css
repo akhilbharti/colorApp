@@ -4,12 +4,12 @@
   margin: 0 auto;
   display: inline-block;
   position: relative;
-  cursor: pointer;
   margin-bottom: -3.5px;
 }
 
 .copy-btn{
   width: 100px;
+  cursor: pointer;
   height: 30px;
   position: absolute;
   display: inline-block;
