@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ColorBox from './colorBox'
 import './styles/palette.css'
+import Navbar from './navbar'
+
 
 function Palette({...props}){
+  const {colors} = props.palette
+  const [level, setLevel] = useState(500)
 
-const colorBoxes = props.colors.map(color=> (
-  <ColorBox background={color.color} name={color.name}/>
+  const changeLevel = (event, newlevel) => {
+    setLevel(newlevel)
+  }
+
+const colorBoxes = colors[level].map(color=> (
+  <ColorBox background={color.hex} name={color.name}/>
 ))
 
   return <div className="Palette">
+    <Navbar level={level} changeLevel={changeLevel}/>
     {/* navbar will be added here */}
     <div className="palette-clr">
       {colorBoxes}

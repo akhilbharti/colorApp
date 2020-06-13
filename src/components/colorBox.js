@@ -3,6 +3,8 @@ import './styles/colorBox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 
+
+
 function ColorBox({...props}){
   const [copied, setCopied] = useState(false)
 
