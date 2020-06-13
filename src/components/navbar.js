@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
-import { Typography, makeStyles, AppBar,Toolbar,MenuItem,IconButton,Select } from '@material-ui/core';
+import { Typography, makeStyles, AppBar,Toolbar,MenuItem,IconButton,Select,FormControl,Snackbar} from '@material-ui/core';
 import DiscreteSlider from './slider'
+import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -37,16 +38,34 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 function Navbar({...props}) {
   const { changeFormat, level, changeLevel }=props
   const classes = useStyles();
 const [format, setFormat] = useState("hex")
+  const [open, setOpen] = React.useState(false);
+
+  
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
 const handleChangeSlider=(e)=>{
   setFormat(e.target.value)
   changeFormat(e.target.value)
+  setOpen(true)
 }
 
   return (
@@ -69,21 +88,41 @@ const handleChangeSlider=(e)=>{
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <FormControl variant="filled" className={classes.formControl}>
             <Select
               labelId="color-selector"
               id="color-selector"
               value={format}
               onChange={handleChangeSlider}
             >
-              <MenuItem value="hex">#FFF</MenuItem>
-              <MenuItem value="rgb">rgb(255,255,255)</MenuItem>
-              <MenuItem value="rgba">rgba(255,255,255)</MenuItem>
+              <MenuItem value="hex">HEX</MenuItem>
+              <MenuItem value="rgb">RGB</MenuItem>
+              <MenuItem value="rgba">RGBA</MenuItem>
             </Select>
+            </FormControl>
           </div>
           <div className={classes.sectionMobile}>
           </div>
         </Toolbar>
       </AppBar>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      message={<span id="message-id">Format Changed to {format.toUpperCase()}!!</span>}
+        ContentProps={{ "aria-describedbody":"message-id"}}
+        action={
+          <>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </>
+        }
+      />
     </div>
   );
 }
