@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
-import { Typography, makeStyles, AppBar,Toolbar,MenuItem,IconButton,Select,FormControl,Snackbar} from '@material-ui/core';
+import { Typography, makeStyles, AppBar,Toolbar,MenuItem,IconButton,Select,FormControl,Snackbar,Paper} from '@material-ui/core';
 import DiscreteSlider from './slider'
 import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -70,6 +70,7 @@ const handleChangeSlider=(e)=>{
 
   return (
     <div className={classes.grow}>
+      <Paper>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -105,6 +106,7 @@ const handleChangeSlider=(e)=>{
           </div>
         </Toolbar>
       </AppBar>
+      </Paper>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',

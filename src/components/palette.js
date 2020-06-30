@@ -5,7 +5,7 @@ import Navbar from './navbar'
 
 
 function Palette({...props}){
-  const {colors} = props.palette
+  const {colors,paletteName,emoji} = props.palette
   const [level, setLevel] = useState(500)
   const [format,setFormat] = useState("hex")
 
@@ -17,7 +17,7 @@ function Palette({...props}){
 setFormat(val)
   }
 const colorBoxes = colors[level].map(color=> (
-  <ColorBox background={color[format]} name={color.name}/>
+  <ColorBox key={color.id} background={color[format]} name={color.name}/>
 ))
   return <div className="Palette">
     <Navbar level={level} changeLevel={changeLevel} changeFormat={changeFormat}/>
@@ -26,6 +26,9 @@ const colorBoxes = colors[level].map(color=> (
       {colorBoxes}
 {/* different color boxes will go here */}
     </div>
+    <footer className="palette-footer">{paletteName}
+    <span className="emoji">{emoji}</span>
+    </footer>
     {/* eventually footer will be added here */}
     </div>
 }
