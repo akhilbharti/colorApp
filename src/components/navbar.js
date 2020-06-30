@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Typography, makeStyles, AppBar,Toolbar,MenuItem,IconButton,Select,FormControl,Snackbar,Paper} from '@material-ui/core';
 import DiscreteSlider from './slider'
+import {Link} from 'react-router-dom'
 import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,9 +82,11 @@ const handleChangeSlider=(e)=>{
           >
             {/* <MenuIcon /> */}
           </IconButton>
+          <Link to='/'>
           <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography>
+          </Link>
           <div className={classes.search}>
             <DiscreteSlider level={level} changeLevel={changeLevel} />
           </div>
