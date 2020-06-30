@@ -84,7 +84,7 @@ const handleChangeSlider=(e)=>{
           </IconButton>
           <Link to='/'>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            React Color
           </Typography>
           </Link>
           <div className={classes.search}>
