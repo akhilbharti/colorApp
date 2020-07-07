@@ -34,11 +34,12 @@ const styles= makeStyles({
 })
 
 function PaletteList(props){
-  const { palettes} = props
+  const { palettes, history} = props
   const classes = styles()
-  const platteRoute = palettes.map(palette=>{
-    return <MiniPalette {...palette}/>
-  })
+  const goToPalette=(id)=>{
+    history.push(`/palette/${id}`)
+  }
+  
 return( 
   <div className={classes.root}>
     <div className={classes.container}>
@@ -46,7 +47,9 @@ return(
         <h1>React Colors</h1>
       </nav>
       <div className={classes.palettes}>
-      {platteRoute}
+        {palettes.map(palette => (
+          <MiniPalette key={palette.id} {...palette} goToPalette={goToPalette} />
+        ))}
       </div>
     </div>
   </div>)
