@@ -36,12 +36,11 @@ function ColorBox({...props}){
         <button className='copy-btn'>Copy</button>
     </CopyToClipboard>
       </div>
-      {props.showLink?(
+      {props.showLink &&
         <Link to={`/palette/${paletteId}/${id}`} onClick={(e) => e.stopPropagation()}>
           <span className="see-more" >More</span>
         </Link>
-      ):null}
-
+      }
     </div>
   )
 

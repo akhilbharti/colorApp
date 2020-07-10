@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import ColorBox from './colorBox'
 import './styles/palette.css'
 import Navbar from './navbar'
+import Footer from './footer'
 
 
 function Palette({...props}){
@@ -14,21 +15,19 @@ function Palette({...props}){
   }
 
   const changeFormat=(val)=>{
-setFormat(val)
+  setFormat(val)
   }
 const colorBoxes = colors[level].map(color=> (
   <ColorBox key={color.id} background={color[format]} name={color.name} id={color.id} paletteId={id} showLink={true}/>
 ))
   return <div className="Palette">
-    <Navbar level={level} changeLevel={changeLevel} changeFormat={changeFormat}/>
+    <Navbar level={level} changeLevel={changeLevel} changeFormat={changeFormat} showAllColor={true}/>
     {/* navbar will be added here */}
     <div className="palette-clr">
       {colorBoxes}
 {/* different color boxes will go here */}
     </div>
-    <footer className="palette-footer">{paletteName}
-    <span className="emoji">{emoji}</span>
-    </footer>
+    <Footer paletteName={paletteName} emoji={emoji}/>
     {/* eventually footer will be added here */}
     </div>
 }

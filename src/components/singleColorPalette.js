@@ -1,10 +1,16 @@
 import React,{useState, useEffect} from 'react'
 import ColorBox from './colorBox'
 import './styles/palette.css'
+import Navbar from './navbar'
+import Footer from './footer'
+
+
 
 function SingleColor({ ...props }){
   const {colorId, palette} = props
   const [shades, setShades] = useState([])
+  const [format, setFormat] = useState("hex")
+
 
   function gatherShades(palette,colorId){
     let tempShades=[]
@@ -17,17 +23,23 @@ function SingleColor({ ...props }){
     }
     tempShades=tempShades.slice(1)
     setShades(tempShades)
-}
+  }
+
   useEffect(() => {
     gatherShades(palette, colorId)
   }, [colorId, palette])
 
+  const changeFormat = (val) => {
+    setFormat(val)
+  }
   const colorBoxes = shades.map(color=>{
-   return <ColorBox key={color.id} name={color.name} background={color.hex} showLink={false}/>
+    return <ColorBox key={color.id} name={color.name} background={color[format]} showLink={false} showAllColor={false}/>
   })
   return (
     <div className="Palette">
+      <Navbar  changeFormat={changeFormat} />
       <div className="palette-clr">{colorBoxes}</div>
+      <Footer paletteName={palette.paletteName} emoji={palette.emoji} />
   </div>
   )
 }

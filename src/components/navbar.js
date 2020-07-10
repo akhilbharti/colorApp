@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Navbar({...props}) {
-  const { changeFormat, level, changeLevel }=props
+  const { changeFormat, level, changeLevel, showAllColor }=props
   const classes = useStyles();
 const [format, setFormat] = useState("hex")
   const [open, setOpen] = React.useState(false);
@@ -87,9 +87,10 @@ const handleChangeSlider=(e)=>{
             React Color
           </Typography>
           </Link>
+            {showAllColor &&
           <div className={classes.search}>
             <DiscreteSlider level={level} changeLevel={changeLevel} />
-          </div>
+              </div>}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <FormControl variant="filled" className={classes.formControl}>
