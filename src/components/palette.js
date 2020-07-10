@@ -5,7 +5,7 @@ import Navbar from './navbar'
 
 
 function Palette({...props}){
-  const {colors,paletteName,emoji} = props.palette
+  const {colors,paletteName,emoji, id} = props.palette
   const [level, setLevel] = useState(500)
   const [format,setFormat] = useState("hex")
 
@@ -17,7 +17,7 @@ function Palette({...props}){
 setFormat(val)
   }
 const colorBoxes = colors[level].map(color=> (
-  <ColorBox key={color.id} background={color[format]} name={color.name}/>
+  <ColorBox key={color.id} background={color[format]} name={color.name} id={color.id} paletteId={id} showLink={true}/>
 ))
   return <div className="Palette">
     <Navbar level={level} changeLevel={changeLevel} changeFormat={changeFormat}/>

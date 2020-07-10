@@ -20,7 +20,7 @@ function ColorBox({...props}){
     }
   }, [copied])
 
-const {name, background} = props
+  const { name, background, id, paletteId} = props
   return (
     <div className="color-box" style={{background}}>
       <div style={{background}} className={`copy-overlay ${copied && 'show'}`}/>
@@ -36,10 +36,12 @@ const {name, background} = props
         <button className='copy-btn'>Copy</button>
     </CopyToClipboard>
       </div>
-      <Link to ="/">
-      <span className="see-more" onClick={(e)=>e.stopPropagation()}>More</span>
-      
-      </Link>
+      {props.showLink?(
+        <Link to={`/palette/${paletteId}/${id}`} onClick={(e) => e.stopPropagation()}>
+          <span className="see-more" >More</span>
+        </Link>
+      ):null}
+
     </div>
   )
 
