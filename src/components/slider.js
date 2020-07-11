@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles, Slider, withStyles } from '@material-ui/core';
+import React from "react";
+import { makeStyles, Slider, withStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,23 +11,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PrettoSlider = withStyles({
   root: {
-    color: '#52af77',
+    color: "#52af77",
     height: 8,
   },
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: 'green',
-    outline:'none',
-    border: '2px solid green',
+    backgroundColor: "green",
+    outline: "none",
+    border: "2px solid green",
     marginTop: -8,
     marginLeft: -12,
-    '&:focus, &:hover, &$active': {
-      boxShadow: 'none',
+    "&:focus, &:hover, &$active": {
+      boxShadow: "none",
     },
   },
   active: {},
-  
+
   track: {
     height: 8,
     borderRadius: 4,
@@ -38,17 +38,14 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-
-
-export default function DiscreteSlider({...props}) {
-  const {level, changeLevel} = props
+export default function DiscreteSlider({ ...props }) {
+  const { level, changeLevel } = props;
   const classes = useStyles();
-  
 
   return (
     <div className={classes.root}>
       <PrettoSlider
-        value={level}   
+        value={level}
         onChange={changeLevel}
         aria-labelledby="discrete-slider"
         step={100}
