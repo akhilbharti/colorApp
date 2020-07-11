@@ -23,7 +23,7 @@ function Palette({ ...props }) {
       name={color.name}
       id={color.id}
       paletteId={id}
-      showLink={true}
+      showLink
     />
   ));
   return (
@@ -32,7 +32,7 @@ function Palette({ ...props }) {
         level={level}
         changeLevel={changeLevel}
         changeFormat={changeFormat}
-        showAllColor={true}
+        showAllColor
       />
       {/* navbar will be added here */}
       <div className="palette-clr">
