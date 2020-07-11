@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import ColorBox from "./colorBox";
-import "./styles/palette.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import { makeStyles } from "@material-ui/styles";
+
+const styles = makeStyles({
+  palette: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  paletteClr: {
+    height: "90%",
+  },
+});
 
 function Palette({ ...props }) {
   const { colors, paletteName, emoji, id } = props.palette;
@@ -26,8 +37,9 @@ function Palette({ ...props }) {
       showLink
     />
   ));
+  const classes = styles();
   return (
-    <div className="Palette">
+    <div className={classes.palette}>
       <Navbar
         level={level}
         changeLevel={changeLevel}
@@ -35,7 +47,7 @@ function Palette({ ...props }) {
         showAllColor
       />
       {/* navbar will be added here */}
-      <div className="palette-clr">
+      <div className={classes.paletteClr}>
         {colorBoxes}
         {/* different color boxes will go here */}
       </div>
