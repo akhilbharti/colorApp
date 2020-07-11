@@ -9,7 +9,7 @@ import {
   Select,
   FormControl,
   Snackbar,
-  Paper,
+  
 } from "@material-ui/core";
 import DiscreteSlider from "./slider";
 import { Link } from "react-router-dom";
@@ -81,7 +81,7 @@ function Navbar({ ...props }) {
 
   return (
     <div className={classes.grow}>
-      <Paper>
+      
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -120,7 +120,7 @@ function Navbar({ ...props }) {
             <div className={classes.sectionMobile}></div>
           </Toolbar>
         </AppBar>
-      </Paper>
+     
       <Snackbar
         anchorOrigin={{
           vertical: "bottom",
