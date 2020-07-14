@@ -15,7 +15,8 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { SketchPicker } from "react-color";
+import { ChromePicker } from "react-color";
+import DraggableColorBox from './DraggableColorBox'
 const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    height:"calc(100vh - 64px)",
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -79,6 +81,8 @@ export default function NewPalette() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [currentColor, setCurrenColor ]= React.useState("teal")
+  const [colorArray, setColorArray] = React.useState([])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -88,6 +92,15 @@ export default function NewPalette() {
     setOpen(false);
   };
 
+  const handleChangeComplete=(color)=>{
+    setCurrenColor(color.hex)
+  }
+
+  const handleAddColor=()=>{
+    const temparray=[...colorArray,currentColor]
+    setColorArray(temparray)
+  }
+  console.log('%c⧭', 'color: #00bf00', currentColor);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -142,8 +155,16 @@ export default function NewPalette() {
             Reset Palette
           </Button>
         </div>
-        <SketchPicker />
-        <Button variant="contained" color="secondary">
+        <ChromePicker
+          color={currentColor}
+          onChangeComplete={handleChangeComplete}
+        />
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleAddColor}
+          style={{ backgroundColor: currentColor }}
+        >
           Add Color
         </Button>
         <Divider />
@@ -154,6 +175,9 @@ export default function NewPalette() {
         })}
       >
         <div className={classes.drawerHeader} />
+        {colorArray.map((color) => (
+          <DraggableColorBox  color={color} />
+        ))}
       </main>
     </div>
   );
