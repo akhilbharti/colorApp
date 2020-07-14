@@ -4,6 +4,7 @@ import Palette from "./components/palette";
 import PaletteList from "./components/paletteList";
 import { generatePalette } from "./helper/colorHelper";
 import SingleColor from "./components/singleColorPalette";
+import NewPalette from './components/newPalette'
 import seedColor from "./seedColor";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   };
   return (
     <Switch>
+      <Route exact path="/palette/new" render={(renderProps) => (<NewPalette/>)} />
       <Route
         exact
         path="/"
@@ -21,6 +23,7 @@ function App() {
           <PaletteList palettes={seedColor} {...routeProps} />
         )}
       ></Route>
+
       <Route
         exact
         path="/palette/:id"
